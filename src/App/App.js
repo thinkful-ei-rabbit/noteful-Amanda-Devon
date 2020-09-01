@@ -90,7 +90,7 @@ class App extends Component {
   //     );
   // }
   findById =(id) => {
-      console.log(this.state.notes)
+
     return this.state.notes.find(note => note.id === id)
     
   }

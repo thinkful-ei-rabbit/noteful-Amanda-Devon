@@ -18,7 +18,6 @@
 import React from 'react';
 
 export default function Note (props){ 
-  console.log(props) 
   const result = !props.note ? ( 'loading' ) : ( 
   <div> 
     <title>{props.note.name}</title> 
