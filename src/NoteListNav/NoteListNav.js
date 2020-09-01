@@ -1,14 +1,15 @@
 import React from 'react';
 
-import './NoteListNav.css';
+// import './NoteListNav.css';
 
-export default function NoteListNav (props){
+
+export default function NotePageMain(props){
   return (
     <div>
-      <a href='#Folder1'>Folder1</a><br />
-      <a href='#Folder2'>Folder2</a><br />
-      <a href='#Folder3'>Folder3</a><br />
-      <button>Add New Folder</button>
+      <ul>
+        {props.folders.map(folder => <div>{folder.name}</div>)}
+      </ul>
+      <button>Add Folder</button>
     </div>
   )
 }

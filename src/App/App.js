@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-// import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom'; //Link
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import NoteListNav from '../NoteListNav/NoteListNav';
 // import NotePageNav from '../NotePageNav/NotePageNav';
 // import NoteListMain from '../NoteListMain/NoteListMain';
-// import NotePageMain from '../NotePageMain/NotePageMain';
+import Note from '../Note/Note';
+import NotePageMain from '../NotePageMain/NotePageMain';
 import dummyStore from '../dummyStore';
 // import {getNotesForFolder, findNote, findFolder} from '../notes-helpers';
 import './App.css';
@@ -88,11 +89,16 @@ class App extends Component {
   //         </>
   //     );
   // }
+  findById =(id) => {
+      console.log(this.state.notes)
+    return this.state.notes.find(note => note.id === id)
+    
+  }
 
   render() {
       return (
           <div className="App">
-              <nav className="App__nav"><NoteListNav /></nav>
+              <nav className="App__nav"><Route path="/" render={() => <NoteListNav folders={this.state.folders} />} /></nav>
               <header className="App__header">
                   <h1>
                     Noteful
@@ -100,10 +106,16 @@ class App extends Component {
                       <FontAwesomeIcon icon="check-double" /> */}
                   </h1>
               </header>
-              <main className="App__main">Main</main>
+              <main className="App__main">
+                <div>
+                    <Route exact path="/" render={() => <NotePageMain notes={this.state.notes} />} />
+                    <Route path="/note/:noteId" render={(routeProps) => <Note note={this.findById(routeProps.match.params.noteId)} />} />
+                </div>
+              </main>
           </div>
       );
   }
 }
+
 
 export default App;
